@@ -588,6 +588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 10
   playerJumpPower: 1250
+  isGrounded: 0
 --- !u!114 &1891287946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -600,8 +601,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7322e2a69bdb994da50717ba28a57fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  hasDied: 0
 --- !u!1001 &1543389767618327464
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -8,15 +8,10 @@ public class Player_Move : MonoBehaviour
     private bool facingRight = false;  // this is so unity doesn't mess with these
     public int playerJumpPower = 1250;
     private float moveX;
+    public bool isGrounded;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
-    
     //everything in here runs at every frame in the game, constantly updates.
     void Update() 
     {
@@ -25,8 +20,8 @@ public class Player_Move : MonoBehaviour
     void playerMove() {
         // CONTROLS
         moveX = Input.GetAxis("Horizontal"); // 1 means the stick is pushed all the way to the right
-        if (Input.GetButtonDown ("Jump")){
-            jump();
+        if (Input.GetButtonDown ("Jump") && isGrounded){
+            Jump();
         }
         // ANIMATIONS
         // PLAYER DIRECTION
@@ -40,8 +35,9 @@ public class Player_Move : MonoBehaviour
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2 (moveX * playerSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);
 
     }
-    void jump() {
+    void Jump() {
         GetComponent<Rigidbody2D>().AddForce (Vector2.up * playerJumpPower); // obviously rigidbody2d is our player character
+        isGrounded = false;
     }
     void flipPlayer() {  // scale is var in unity, putting it to neg value will literally flip the asset
         facingRight = !facingRight;
@@ -49,4 +45,11 @@ public class Player_Move : MonoBehaviour
         localScale.x *= -1;
         transform.localScale = localScale;
     }
-}
+
+    void OnCollisionEnter2D (Collision2D col){
+        Debug.Log ("Player has collided with " + col.collider.name); //for some reason this isnt printing
+        if (col.gameObject.tag == "ground") {
+            isGrounded = true;
+            }
+        }
+    }
