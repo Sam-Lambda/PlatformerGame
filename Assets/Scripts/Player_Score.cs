@@ -26,7 +26,13 @@ public class Player_Score : MonoBehaviour
 
     void OnTriggerEnter2D (Collider2D trig){
         //Debug.Log ("Touched the end of the level");
+        if (trig.gameObject.name == "EndLevel") {  // you should avoid using .name
         CountScore ();
+        }
+        if (trig.gameObject.name == "Apple") {
+            playerScore += 10;
+            Destroy (trig.gameObject);
+        }
     }
 
     void CountScore () {

@@ -16,7 +16,7 @@ public class Camerasystem : MonoBehaviour
     void Start()
     {
         xMin = -3;
-        xMax = 20;
+        xMax = 30;
         player = GameObject.FindGameObjectWithTag ("Player"); // finds object with tag and associates it with variable above.
         // this tag we made through edit -> project settings -> tags and layers.
         // then found out it already exists.. so we got rid of it.

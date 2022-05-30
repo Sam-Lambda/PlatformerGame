@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Enemy_Move : MonoBehaviour
 {
-    public int EnemySpeed;
-    public int xMoveDirection;
+    private int EnemySpeed = 2;
+    private int xMoveDirection;
 
 
     // Update is called once per frame
@@ -15,6 +15,9 @@ public class Enemy_Move : MonoBehaviour
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2 (xMoveDirection, 0) * EnemySpeed;
         if (hit.distance < 0.4f) { // the distance between the ray and whatever it hits
             Flip ();
+            if (hit.collider.tag == "Player") {
+                Destroy (hit.collider.gameObject);
+            }
         }
 
         void Flip () {
