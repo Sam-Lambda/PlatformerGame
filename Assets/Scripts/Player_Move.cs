@@ -47,7 +47,7 @@ public class Player_Move : MonoBehaviour
     }
 
     void OnCollisionEnter2D (Collision2D col){
-        Debug.Log ("Player has collided with " + col.collider.name); //for some reason this isnt printing
+        //Debug.Log ("Player has collided with " + col.collider.name); //for some reason this isnt printing
         if (col.gameObject.tag == "ground") {
             isGrounded = true;
             }
