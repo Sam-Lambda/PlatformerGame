@@ -52,15 +52,34 @@ public class Player_Move : MonoBehaviour
 
         }
 
-        void PlayerRaycast () {  // we want to shoot a ray down from the player and do something
-        // we want bounce when hitting enemy
-        RaycastHit2D hit = Physics2D.Raycast (transform.position, Vector2.down);  // this shoots a ray downwards
-        if (hit != null && hit.collider != null && hit.distance < 0.9f && hit.collider.tag == "enemy") {
-            GetComponent<Rigidbody2D>().AddForce (Vector2.up * 1000);
+        void PlayerRaycast () {  
+        //TODO FIX DISGUSTING CODE
+
+
+
+        //  Ray UP
+        RaycastHit2D rayUp = Physics2D.Raycast (transform.position, Vector2.up);
+        if (rayUp != null && rayUp.collider != null && rayUp.distance < 0.9f && rayUp.collider.name == "Rock_Head") {
+            Destroy (rayUp.collider.gameObject);
         }
-        if (hit != null && hit.collider != null && hit.distance < 0.9f && hit.collider.tag != "enemy") {  // we can jump off boxes now
+        //  Ray DOWN
+        // we want to shoot a ray down from the player and do something
+        // we want bounce when hitting enemy
+        RaycastHit2D rayDown = Physics2D.Raycast (transform.position, Vector2.down);  // this shoots a ray downwards
+        if (rayDown != null && rayDown.collider != null && rayDown.distance < 0.9f && rayDown.collider.tag == "enemy") {
+            GetComponent<Rigidbody2D> ().AddForce (Vector2.up * 1000);
+            //Destroy (rayDown.collider.gameObject);  //you probably want this back instead of the below lines
+            //  here we adjust the components for whatever the player lands on.
+            rayDown.collider.gameObject.GetComponent<Rigidbody2D> ().AddForce (Vector2.right * 200);
+            rayDown.collider.gameObject.GetComponent<Rigidbody2D> ().gravityScale = 8;
+            rayDown.collider.gameObject.GetComponent<Rigidbody2D> ().freezeRotation = false;
+            rayDown.collider.gameObject.GetComponent<BoxCollider2D> ().enabled = false;
+            rayDown.collider.gameObject.GetComponent<Enemy_Move> ().enabled = false;
+            
+        }
+        if (rayDown != null && rayDown.collider != null && rayDown.distance < 0.9f && rayDown.collider.tag != "enemy") {  // we can jump off boxes now
             isGrounded = true;
         }
-        //  null checks are for an error for when the ray doesn't hit the ground (jumping over a gap)
+        //  null checks are for an error for when the ray doesn't rayDown the ground (jumping over a gap)
     }
 }

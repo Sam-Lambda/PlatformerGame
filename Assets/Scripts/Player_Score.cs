@@ -12,6 +12,14 @@ public class Player_Score : MonoBehaviour
     public GameObject timeLeftUI;  // this is so we can attach the object to the script?
     public GameObject playerScoreUI;
 
+    void Start () {
+        //Just for testing
+        DataManagement.dataManagement.LoadData();  // if all works, this is supposed to load in our highscore from any previous save.
+        // To clarify, we're creating a serialized encrypted save file where we're getting our score, and we're sending in to that save file
+        // then writing that out to an actual file that will stay there unless you delete the entire game off your system and then we're loading
+        // that data.
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -36,7 +44,11 @@ public class Player_Score : MonoBehaviour
     }
 
     void CountScore () {
+        Debug.Log("Data says high score is currently " +DataManagement.dataManagement.highScore);
         playerScore = playerScore + (int)(timeLeft * 10);
-        Debug.Log (playerScore);
+        DataManagement.dataManagement.highScore = playerScore + (int)(timeLeft * 10);
+        DataManagement.dataManagement.SaveData ();
+        Debug.Log("After adding score to DataManagement, Data says high score is currently " +DataManagement.dataManagement.highScore);
+
     }
 }
