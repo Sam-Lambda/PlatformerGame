@@ -10,7 +10,7 @@ public class Player_Move : MonoBehaviour
     public int playerJumpPower = 1250;
     private float moveX;
     public bool isGrounded;
-    public float distanceToBottomOfPlayer = 0.9f;
+    public float distanceToBottomOfPlayer = 0.3426f;
 
     // Update is called once per frame
     //everything in here runs at every frame in the game, constantly updates.
@@ -73,11 +73,15 @@ public class Player_Move : MonoBehaviour
 
 
 
+        /*
+        // BAD CODE
         //  Ray UP
-        RaycastHit2D rayUp = Physics2D.Raycast (transform.position, Vector2.up);
+        RaycastHit2D rayUp = Physics2D.Raycast (transform.position, Vector2.up);  
+        // if the distance between player and object is less than x, destroy object 
         if (rayUp != null && rayUp.collider != null && rayUp.distance < distanceToBottomOfPlayer && rayUp.collider.name == "Rock_Head") {
-            Destroy (rayUp.collider.gameObject);
+            Destroy (rayUp.collider.gameObject); 
         }
+        */
         //  Ray DOWN
         // we want to shoot a ray down from the player and do something
         // we want bounce when hitting enemy
