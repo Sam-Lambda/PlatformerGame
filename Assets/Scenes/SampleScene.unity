@@ -165,7 +165,7 @@ MonoBehaviour:
   xMin: 0.11
   xMax: 30
   yMin: -800
-  yMax: 0
+  yMax: 800
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -660,7 +660,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1095592731}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30.204, y: -64.442, z: 0}
+  m_LocalPosition: {x: -36.6, y: 50.4, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1027,7 +1027,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1203797928}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -39.4894, y: -67, z: 0}
+  m_LocalPosition: {x: -45.885395, y: 47.842007, z: 0}
   m_LocalScale: {x: 42.307026, y: 5.0739, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
