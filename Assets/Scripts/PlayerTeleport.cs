@@ -2,10 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewAreaTP : MonoBehaviour
+public class PlayerTeleport : MonoBehaviour
 {
-    // FIX BAD CODE
 
+    private GameObject currentTeleporter;
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E)) {
+            if (currentTeleporter != null) {
+                transform.position = currentTeleporter.GetComponent<Teleporter>().GetDestination().position;
+            }
+        }
+    }
+    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Teleporter")) {
+        currentTeleporter = collision.gameObject;
+    }
+        
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Teleporter")) {
+        if (collision.gameObject == currentTeleporter) {
+            currentTeleporter = null;
+        }
+        }
+        
+    }
+}
+
+
+
+    /*  // OLD CODE
     public GameObject sp1, sp2; // spawn points
     public static bool canTransport;  //for some reason this is bad design? investigate
     GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -33,4 +64,4 @@ public class NewAreaTP : MonoBehaviour
     void OnTriggerExit2D(Collider2D trig) {
         canTransport = true;
     }
-}
+    */
